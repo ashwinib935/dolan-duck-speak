@@ -48,6 +48,10 @@ body {
     padding: 1rem;
 }
 
+#message {
+    font-size: large;
+}
+
 .div-translated p {
     font-size: large;
 

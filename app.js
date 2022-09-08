@@ -1,6 +1,7 @@
 var txt_input = document.querySelector("#txt-input");
 var btn_translate = document.querySelector("#btn-translate");
 var outputDiv = document.querySelector("#output");
+var message = document.querySelector("#message");
 
 var serverURL = "https://api.funtranslations.com/translate/dolan.json";
 
@@ -19,12 +20,16 @@ function errorHandler(error) {
 
 
 function clickEventHandler() {
-    console.log("Clicked");
     var input_text = txt_input.value;
-    fetch(getTranslatedURL(input_text))
-        .then(response => response.json())
-        .then(json => {
-            outputDiv.innerText = json.contents.translated;
-        }).catch(errorHandler);
-
+    if (input_text) {
+        message.style.display = "none";
+        fetch(getTranslatedURL(input_text))
+            .then(response => response.json())
+            .then(json => {
+                outputDiv.innerText = json.contents.translated;
+            }).catch(errorHandler);
+    } else {
+        message.style.display = "block";
+        message.innerText = "Please write something to translate."
+    }
 }
